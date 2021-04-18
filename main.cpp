@@ -1,13 +1,14 @@
 //data structures_demo
 #include <iostream>
 #include "stack.h"
+#include "queue.h"
 
 using namespace std;
 
-int main(void)
+void stack_demo(void)
 {
     int v;
-
+    cout << "Stack demo" << endl;
     push(1);
     push(2);
     push(3);
@@ -15,10 +16,31 @@ int main(void)
     push(5);
     push(6);
 
-    cout << "Hello world!!!!" << endl;
+    cout << "Pushed 6 items" << endl;
     while (pop(&v))
         cout << "Value:" << v << endl;
+}
+void queue_demo(void)
+{
+    int v;
+    cout << "FIFO demo" << endl;
+    enqueue(1);
+    enqueue(7);
+    enqueue(4);
+    enqueue(3);
+    enqueue(9);
+    cout << getSize() << endl;
+    //reverse(3);
+    while (!isEmpty())
+    {
+        dequeue(&v);
+        cout << "Dequeued element:" << v << endl;
+    }
+    cout << getSize() << endl;
+}
 
-    //cout << "Stack:" << stack << endl;
+int main(void)
+{
+
     return 0;
 }

@@ -1,5 +1,5 @@
 //Stack subroutines
-#include <iostream>
+#include <cstddef>
 
 typedef struct Node Node;
 struct Node

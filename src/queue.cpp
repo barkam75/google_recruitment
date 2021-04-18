@@ -1,7 +1,5 @@
 //FIFO Queue demo
-#include <iostream>
-
-using namespace std;
+#include <cstddef>
 
 typedef struct Node Node;
 
@@ -11,8 +9,8 @@ struct Node
     Node *next;
 };
 
-Node *head = NULL;
-Node *tail = NULL;
+static Node *head = NULL;
+static Node *tail = NULL;
 
 bool enqueue(int value)
 {
@@ -43,7 +41,7 @@ void dequeue(int *value)
 {
     Node *element = head;
     *value = head->value;
-    first = head->next;
+    head = head->next;
     delete element;
     if (head == NULL)
         tail = NULL;
@@ -85,10 +83,9 @@ bool reverse(unsigned int number)
             return false;
         element = element->next;
     }
-    cout << "Element:" << element->value << endl;
 }
 
-int main(void)
+/* int main(void)
 {
     int v;
     cout << "List demo..." << endl;
@@ -106,4 +103,4 @@ int main(void)
     }
     cout << getSize() << endl;
     return 0;
-}
+} */
