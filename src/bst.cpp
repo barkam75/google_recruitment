@@ -11,7 +11,7 @@ struct Node
 
 static Node *root = NULL;
 
-bool insert(int value)
+bool bst_insert(int value)
 {
 
     Node *element = new Node;
@@ -22,16 +22,43 @@ bool insert(int value)
         return false;
     }
     element->value = value;
+    element->right = NULL;
+    element->left = NULL;
     if (root == NULL)
     {
         root = element;
     }
     else
     {
-        while (traverse)
+        do
+        {
             if (element->value > traverse->value)
             {
+                //Go  right
+                if (traverse->right == NULL)
+                {
+                    traverse->right == element;
+                    return true;
+                }
+                else
+                {
+                    traverse = traverse->right;
+                }
             }
+            else
+            {
+                //Go left
+                if (traverse->left == NULL)
+                {
+                    traverse->left == element;
+                    return true;
+                }
+                else
+                {
+                    traverse = traverse->left;
+                }
+            }
+        } while (traverse != NULL);
     }
     return true;
 }
