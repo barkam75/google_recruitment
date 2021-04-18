@@ -40,11 +40,14 @@ bool enqueue(int value)
 void dequeue(int *value)
 {
     Node *element = head;
-    *value = head->value;
-    head = head->next;
-    delete element;
-    if (head == NULL)
-        tail = NULL;
+    if (element != NULL)
+    {
+        *value = head->value;
+        head = head->next;
+        delete element;
+        if (head == NULL)
+            tail = NULL;
+    }
 }
 
 bool isEmpty(void)
@@ -71,6 +74,7 @@ void flush(void)
         dequeue(&v);
 }
 
+//TODO: Function not working yet
 bool reverse(unsigned int number)
 {
     Node *element = head;
@@ -83,6 +87,7 @@ bool reverse(unsigned int number)
             return false;
         element = element->next;
     }
+    return true;
 }
 
 /* int main(void)

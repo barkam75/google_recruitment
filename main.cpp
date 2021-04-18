@@ -41,6 +41,7 @@ void queue_demo(void)
 
 int main(void)
 {
-
+    stack_demo();
+    queue_demo();
     return 0;
 }
