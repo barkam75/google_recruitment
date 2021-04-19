@@ -30,9 +30,9 @@ void maxcontainer_optimal(int numbers[], int length, int &p1, int &p2, int &maxA
     int m = length - 1;
     maxArea = 0;
 
-    for (cnt = 0; cnt < length - 1; cnt++)
+    for (cnt = 0; cnt < length; cnt++)
     {
-        int area = min(numbers[n], numbers[m]) * m - n;
+        int area = min(numbers[n], numbers[m]) * (m - n);
         if (area >= maxArea)
         {
             maxArea = area;
