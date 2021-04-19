@@ -2,6 +2,7 @@
 #include <iostream>
 #include "stack.h"
 #include "queue.h"
+#include "twosum.h"
 
 using namespace std;
 
@@ -39,9 +40,28 @@ void queue_demo(void)
     cout << getSize() << endl;
 }
 
+void twosum_demo(void)
+{
+    int numbers[] = {1}; //1, 2, 8, 6, 7, 9, 11};
+    int p1,
+        p2;
+    if (twoSum_basic(numbers, 1, 11, p1, p2))
+    {
+        cout << "basic" << endl;
+        cout << "P1:" << p1 << " P2: " << p2 << endl;
+    }
+
+    if (twoSum_optimal(numbers, 1, 11, p1, p2))
+    {
+        cout << "optimal" << endl;
+        cout << "P1:" << p1 << " P2: " << p2 << endl;
+    }
+}
+
 int main(void)
 {
-    stack_demo();
-    queue_demo();
+    twosum_demo();
+    // stack_demo();
+    //queue_demo();
     return 0;
 }
