@@ -22,3 +22,30 @@ void maxcontainer_brute(int numbers[], int length, int &p1, int &p2, int &maxAre
             }
         }
 }
+
+void maxcontainer_optimal(int numbers[], int length, int &p1, int &p2, int &maxArea)
+{
+    int cnt;
+    int n = 0;
+    int m = length - 1;
+    maxArea = 0;
+
+    for (cnt = 0; cnt < length - 1; cnt++)
+    {
+        int area = min(numbers[n], numbers[m]) * m - n;
+        if (area >= maxArea)
+        {
+            maxArea = area;
+            p1 = n;
+            p2 = m;
+        }
+        if (numbers[n] > numbers[m])
+        {
+            m--;
+        }
+        else
+        {
+            n++;
+        }
+    }
+}

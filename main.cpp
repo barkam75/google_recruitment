@@ -66,6 +66,10 @@ void maxcontainer_demo(void)
     maxcontainer_brute(numbers, 5, p1, p2, area);
     cout << "Max area demo (brute)" << endl;
     cout << "Max area: " << area << " by points at:(" << p1 << "," << p2 << ")" << endl;
+
+    maxcontainer_optimal(numbers, 5, p1, p2, area);
+    cout << "Max area demo (optimal)" << endl;
+    cout << "Max area: " << area << " by points at:(" << p1 << "," << p2 << ")" << endl;
 }
 
 int main(void)
