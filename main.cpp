@@ -4,6 +4,7 @@
 #include "queue.h"
 #include "twosum.h"
 #include "maxcontainer.h"
+#include "rainwater.h"
 
 using namespace std;
 
@@ -70,11 +71,22 @@ void maxcontainer_demo(void)
     maxcontainer_optimal(numbers, 5, p1, p2, area);
     cout << "Max area demo (optimal)" << endl;
     cout << "Max area: " << area << " by points at:(" << p1 << "," << p2 << ")" << endl;
+    cout << "Array size:" << sizeof(numbers) / sizeof(numbers[0]) << endl;
+}
+
+void rainwater_demo()
+{
+    //int numbers[] = {0, 3, 2, 3, 0, 3, 2, 1, 2, 9, 4, 0, 4, 3, 2, 2, 1, 3, 0};
+    int numbers[] = {5, 3, 4, 5, 0, 6, 5, 4, 3, 2, 3, 4, 8};
+    cout << "Trapped rainwater demo" << endl;
+    cout << "Trapped water(brute):" << trapped_rainwater_brute(numbers, 13) << endl;
+    cout << "Trapped water(optim):" << trapped_rainwater(numbers, 13) << endl;
 }
 
 int main(void)
 {
-    maxcontainer_demo();
+    rainwater_demo();
+    //maxcontainer_demo();
     //twosum_demo();
     // stack_demo();
     //queue_demo();
