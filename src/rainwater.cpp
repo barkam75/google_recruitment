@@ -53,7 +53,7 @@ int trapped_rainwater(int numbers[], int length)
             switch (state)
             {
             case stopped:
-                if (df < 0) //Falling edge detected
+                if (df <= 0) //Falling edge detected
                 {
                     break;
                 }
@@ -80,7 +80,7 @@ int trapped_rainwater(int numbers[], int length)
                     {
                         //If current number is smaller than the reference level make correction (flush only water up to the current number)
                         area_tmp += level_ref - numbers[n];
-                        int area_cor = counter * level_ref - numbers[n];
+                        int area_cor = counter * (level_ref - numbers[n]);
                         area_tot += area_tmp - area_cor;
                         area_tmp = area_cor;
                     }
@@ -95,4 +95,34 @@ int trapped_rainwater(int numbers[], int length)
         }
     }
     return area_tot;
+}
+
+int trapped_rainwater_2_optim(int numbers[], int length)
+{
+    int totalWater = 0;
+    int maxLeft = 0;
+    int maxRight = 0;
+    int p1 = 0;
+    int p2 = length - 1;
+    int cnt = 0;
+    int currentWater = 0;
+    while (p1 != p2)
+    {
+        maxRight = maxRight < numbers[p2] ? numbers[p2] : maxRight;
+        maxLeft = maxLeft < numbers[p1] ? numbers[p1] : maxLeft;
+        int side = min(maxRight, maxLeft);
+        if (numbers[p1] > numbers[p2])
+        {
+            totalWater += side > numbers[p2] ? (side - numbers[p2]) : 0;
+            //Move right pointer
+            p2--;
+        }
+        else
+        {
+            totalWater += side > numbers[p1] ? (side - numbers[p1]) : 0;
+            //Move left pointer
+            p1++;
+        }
+    }
+    return totalWater;
 }

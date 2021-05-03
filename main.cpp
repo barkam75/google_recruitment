@@ -77,10 +77,12 @@ void maxcontainer_demo(void)
 void rainwater_demo()
 {
     //int numbers[] = {0, 3, 2, 3, 0, 3, 2, 1, 2, 9, 4, 0, 4, 3, 2, 2, 1, 3, 0};
-    int numbers[] = {5, 3, 4, 5, 0, 6, 5, 4, 3, 2, 3, 4, 8};
+    // int numbers[] = {5, 3, 4, 5, 0, 6, 5, 4, 3, 2, 3, 4, 8};
+    int numbers[] = {0, 1, 0, 2, 1, 0, 3, 1, 0, 1, 2};
     cout << "Trapped rainwater demo" << endl;
-    cout << "Trapped water(brute):" << trapped_rainwater_brute(numbers, 13) << endl;
-    cout << "Trapped water(optim):" << trapped_rainwater(numbers, 13) << endl;
+    cout << "Trapped water(brute):" << trapped_rainwater_brute(numbers, 11) << endl;
+    cout << "Trapped water(optim):" << trapped_rainwater(numbers, 11) << endl;
+    cout << "Trapped water(optim2):" << trapped_rainwater_2_optim(numbers, 11) << endl;
 }
 
 int main(void)
