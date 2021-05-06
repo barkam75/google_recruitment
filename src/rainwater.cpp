@@ -106,6 +106,8 @@ int trapped_rainwater_2_optim(int numbers[], int length)
     int p2 = length - 1;
     int cnt = 0;
     int currentWater = 0;
+    if ((numbers == NULL) || (length < 3))
+        return 0;
     while (p1 != p2)
     {
         maxRight = maxRight < numbers[p2] ? numbers[p2] : maxRight;

@@ -1,10 +1,13 @@
 //data structures_demo
 #include <iostream>
+#include <string>
 #include "stack.h"
 #include "queue.h"
 #include "twosum.h"
 #include "maxcontainer.h"
 #include "rainwater.h"
+#include "hashstr_cmp.h"
+#include "original_substring.h"
 
 using namespace std;
 
@@ -85,9 +88,26 @@ void rainwater_demo()
     cout << "Trapped water(optim2):" << trapped_rainwater_2_optim(numbers, 11) << endl;
 }
 
+void hashstr_cmp_demo(void)
+{
+    string s1 = "adab##c";
+    string s2 = "adc";
+    cout << "Str cmp demo!\n";
+    cout << "Next char ptr:" << get_next_char(s1, s1.length() - 1) << endl;
+    cout << "Str cmp result:" << str_enc_cmp(s1, s2) << endl;
+}
+
+void original_substring_demo(void)
+{
+    string s = "abcdcbadfgzhj";
+    cout << "Largest substring:" << find_largest(s) << endl;
+}
+
 int main(void)
 {
-    rainwater_demo();
+    original_substring_demo();
+    //hashstr_cmp_demo();
+    //rainwater_demo();
     //maxcontainer_demo();
     //twosum_demo();
     // stack_demo();
