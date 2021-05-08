@@ -8,6 +8,7 @@
 #include "rainwater.h"
 #include "hashstr_cmp.h"
 #include "original_substring.h"
+#include "palindromes.h"
 
 using namespace std;
 
@@ -99,13 +100,16 @@ void hashstr_cmp_demo(void)
 
 void original_substring_demo(void)
 {
-    string s = "abcdcbadfgzhj";
+    // string s = "abcdcbadfgzhj";
+    //string s = "abc0abc0abc0abc0ab0abc0";
+    string s = "aaaaaaaaa";
     cout << "Largest substring:" << find_largest(s) << endl;
 }
 
 int main(void)
 {
-    original_substring_demo();
+    palindromes_demo();
+    //original_substring_demo();
     //hashstr_cmp_demo();
     //rainwater_demo();
     //maxcontainer_demo();
