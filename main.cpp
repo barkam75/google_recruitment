@@ -9,6 +9,7 @@
 #include "hashstr_cmp.h"
 #include "original_substring.h"
 #include "palindromes.h"
+#include "lists.h"
 
 using namespace std;
 
@@ -108,7 +109,8 @@ void original_substring_demo(void)
 
 int main(void)
 {
-    palindromes_demo();
+    list_reverse_demo();
+    //palindromes_demo();
     //original_substring_demo();
     //hashstr_cmp_demo();
     //rainwater_demo();
