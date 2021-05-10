@@ -2,12 +2,14 @@
 #define __DL_LISTS__
 #include <iostream>
 using namespace std;
-class DLList
+class DList
 {
+public:
     int value;
-    DLList *child;
-    DLList *prev;
-    DLList *next;
+    DList *next;
+    DList *prev;
+    DList *child;
+    DList();
 };
 
 void dl_list_merge_demo(void);

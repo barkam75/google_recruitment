@@ -10,6 +10,7 @@
 #include "original_substring.h"
 #include "palindromes.h"
 #include "lists.h"
+#include "dli_lists.h"
 
 using namespace std;
 
@@ -109,7 +110,8 @@ void original_substring_demo(void)
 
 int main(void)
 {
-    list_reverse_demo();
+    dl_list_merge_demo();
+    //list_reverse_demo();
     //palindromes_demo();
     //original_substring_demo();
     //hashstr_cmp_demo();
