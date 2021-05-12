@@ -1,7 +1,8 @@
+#include <set>
 #include "lists.h"
 
-Node *head = NULL;
-Node *tail = NULL;
+static Node *head = NULL;
+static Node *tail = NULL;
 
 Node *append(int value)
 {
@@ -118,6 +119,13 @@ void list_reverse2(int m, int n)
     start->next->next = item;
     start->next = prev;
 }
+
+//Node *detect_cycle_simple(void)
+//{
+//    set<int> s1;
+//    Node *item = head;
+//    while (s1.find(item->value))
+//}
 
 void list_reverse_demo(void)
 {

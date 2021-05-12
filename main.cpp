@@ -14,6 +14,47 @@
 
 using namespace std;
 
+void check_bracket(string &s)
+{
+    int ptr = 0;
+    int cnt = 0;
+    int p;
+    int length = s.length();
+    for (cnt = 0; cnt < length; cnt++)
+    {
+        if (s[ptr] == '(')
+        {
+            push(ptr);
+            ptr++;
+        }
+        else if (s[ptr] == ')')
+        {
+            if (!pop(&p))
+            {
+                s.erase(ptr, 1);
+                //ptr--;
+            }
+        }
+        else
+        {
+            ptr++;
+        }
+    }
+    while (pop(&p))
+    {
+        cout << "Erase position: " << p << endl;
+        s.erase(p);
+    }
+}
+
+void check_bracket_demo(void)
+{
+    string s = "a))))((bc(d)())(";
+    cout << "Input string: " << s << endl;
+    check_bracket(s);
+    cout << "Output string: " << s << endl;
+}
+
 void stack_demo(void)
 {
     int v;
@@ -110,7 +151,8 @@ void original_substring_demo(void)
 
 int main(void)
 {
-    dl_list_merge_demo();
+    check_bracket_demo();
+    //dl_list_merge_demo();
     //list_reverse_demo();
     //palindromes_demo();
     //original_substring_demo();
