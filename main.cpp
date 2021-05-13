@@ -14,36 +14,37 @@
 
 using namespace std;
 
-void check_bracket(string &s)
+void check_brackets(string &s)
 {
-    int ptr = 0;
-    int cnt = 0;
+    int p1 = 0;
     int p;
-    int length = s.length();
-    for (cnt = 0; cnt < length; cnt++)
+    while (s[p1] != 0x00)
     {
-        if (s[ptr] == '(')
+        if (s[p1] == '(')
         {
-            push(ptr);
-            ptr++;
+            push(p1);
+            p1++;
         }
-        else if (s[ptr] == ')')
+        else if (s[p1] == ')')
         {
-            if (!pop(&p))
+            if (pop(&p))
             {
-                s.erase(ptr, 1);
-                //ptr--;
+                p1++;
+            }
+            else
+            {
+                s.erase(p1, 1);
             }
         }
         else
         {
-            ptr++;
+            p1++;
         }
     }
     while (pop(&p))
     {
-        cout << "Erase position: " << p << endl;
-        s.erase(p);
+        cout << "Char to erase: " << p << endl;
+        s.erase(p, 1);
     }
 }
 
@@ -51,7 +52,7 @@ void check_bracket_demo(void)
 {
     string s = "a))))((bc(d)())(";
     cout << "Input string: " << s << endl;
-    check_bracket(s);
+    check_brackets(s);
     cout << "Output string: " << s << endl;
 }
 
