@@ -11,6 +11,7 @@
 #include "palindromes.h"
 #include "lists.h"
 #include "dli_lists.h"
+#include "queue_on_stacks.h"
 
 using namespace std;
 
@@ -54,6 +55,43 @@ void check_bracket_demo(void)
     cout << "Input string: " << s << endl;
     check_brackets(s);
     cout << "Output string: " << s << endl;
+}
+
+void queue_on_stack_demo(void)
+{
+    Queue q;
+    int v;
+    q.enqueue(1);
+    q.enqueue(2);
+    q.enqueue(3);
+    q.enqueue(4);
+    q.enqueue(5);
+    q.enqueue(6);
+    cout << "Queue on stacks demo" << endl;
+    cout << "Queue peek " << (q.peek()->value) << endl;
+    cout << "Dequeue elements" << endl;
+    while (q.dequeue(v))
+    {
+        cout << "Queue element: " << v << endl;
+    }
+    cout << "Empty test" << endl;
+    q.enqueue(1);
+    q.enqueue(2);
+    q.enqueue(3);
+    q.enqueue(4);
+    q.enqueue(5);
+    q.enqueue(6);
+    q.empty();
+    q.enqueue(7);
+    q.enqueue(8);
+    q.enqueue(9);
+    q.enqueue(10);
+    q.enqueue(11);
+    q.enqueue(12);
+    while (q.dequeue(v))
+    {
+        cout << "(E)Queue element: " << v << endl;
+    }
 }
 
 void stack_demo(void)
@@ -152,7 +190,8 @@ void original_substring_demo(void)
 
 int main(void)
 {
-    check_bracket_demo();
+    queue_on_stack_demo();
+    //check_bracket_demo();
     //dl_list_merge_demo();
     //list_reverse_demo();
     //palindromes_demo();
