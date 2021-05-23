@@ -192,8 +192,8 @@ void original_substring_demo(void)
 
 int main(void)
 {
-    sort_demo();
-    //bst_demo();
+    // sort_demo();
+    bst_demo();
     //queue_on_stack_demo();
     //check_bracket_demo();
     //dl_list_merge_demo();

@@ -131,6 +131,44 @@ BSTNode *BSTNode::search_BFS(int val)
     return NULL;
 }
 
+int BSTNode::treedepth()
+{
+    queue<pair<BSTNode *, int>> src_queue;
+    pair<BSTNode *, int> item;
+    int level = 0;
+    src_queue.push(make_pair(this, level + 1));
+    cout << endl;
+    while (!src_queue.empty())
+    {
+        item = src_queue.front();
+        src_queue.pop();
+        cout << "Item: " << item.first->value << " is et level: " << item.second << endl;
+        if (item.first->right != NULL)
+            src_queue.push({item.first->right, item.second + 1});
+        if (item.first->left != NULL)
+            src_queue.push({item.first->left, item.second + 1});
+    }
+    return item.second;
+}
+
+int BSTNode::td_dfs(BSTNode *node, int count)
+{
+    int l, r;
+    if (node == NULL)
+        return count;
+    cout << "Node: " << node->value << " at level: " << count << endl;
+    cout << "Go left" << endl;
+    l = td_dfs(node->left, count + 1);
+    cout << "Go right" << endl;
+    r = td_dfs(node->right, count + 1);
+    return max(l, r);
+}
+
+int BSTNode::treedepthdfs()
+{
+    return td_dfs(this, 1);
+}
+
 void bst_demo(void)
 {
     BSTNode *root = new BSTNode(5);
@@ -140,10 +178,15 @@ void bst_demo(void)
     root->insert_i(2);
     root->insert_i(4);
     root->insert_i(6);
+    root->insert_i(7);
+    root->insert_i(10);
+    root->insert_i(11);
     cout << "5 nodes inserted" << endl;
     cout << "DFS Search" << endl;
     item = root->search_DFS(6);
     cout << "BFS search" << endl;
     item = root->search_BFS(4);
     cout << "Search completed" << endl;
+    cout << "Tree depth:" << root->treedepth() << endl;
+    cout << "Tree depth(DFS):" << root->treedepthdfs() << endl;
 }
