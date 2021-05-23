@@ -13,6 +13,7 @@
 #include "dli_lists.h"
 #include "queue_on_stacks.h"
 #include "bst.h"
+#include "maxkth.h"
 
 using namespace std;
 
@@ -191,7 +192,8 @@ void original_substring_demo(void)
 
 int main(void)
 {
-    bst_demo();
+    sort_demo();
+    //bst_demo();
     //queue_on_stack_demo();
     //check_bracket_demo();
     //dl_list_merge_demo();
