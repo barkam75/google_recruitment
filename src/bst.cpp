@@ -156,17 +156,12 @@ int BSTNode::td_dfs(BSTNode *node, int count)
     int l, r;
     if (node == NULL)
         return count;
-    cout << "Node: " << node->value << " at level: " << count << endl;
-    cout << "Go left" << endl;
-    l = td_dfs(node->left, count + 1);
-    cout << "Go right" << endl;
-    r = td_dfs(node->right, count + 1);
-    return max(l, r);
+    return max(td_dfs(node->left, count + 1), td_dfs(node->right, count + 1));
 }
 
 int BSTNode::treedepthdfs()
 {
-    return td_dfs(this, 1);
+    return td_dfs(this, 1) - 1;
 }
 
 void bst_demo(void)
@@ -179,8 +174,8 @@ void bst_demo(void)
     root->insert_i(4);
     root->insert_i(6);
     root->insert_i(7);
-    root->insert_i(10);
-    root->insert_i(11);
+    // root->insert_i(10);
+    // root->insert_i(11);
     cout << "5 nodes inserted" << endl;
     cout << "DFS Search" << endl;
     item = root->search_DFS(6);
