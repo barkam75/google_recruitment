@@ -18,6 +18,8 @@ public:
     BSTNode *search_BFS(int v);
     int treedepth();
     int treedepthdfs();
+    void level_order();
+    void level_order2();
 };
 
 void bst_demo(void);
