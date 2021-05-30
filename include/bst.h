@@ -1,5 +1,7 @@
 #ifndef __BST_ROUTINES__
 #define __BST_ROUTINES__
+#include <vector>
+
 bool bst_insert(int v);
 
 class BSTNode
@@ -8,6 +10,7 @@ class BSTNode
     BSTNode *left;
     BSTNode *right;
     int td_dfs(BSTNode *node, int count);
+    void rs_dfs(BSTNode *node, int level, std::vector<int> &table);
 
 public:
     BSTNode();
@@ -20,6 +23,8 @@ public:
     int treedepthdfs();
     void level_order();
     void level_order2();
+    void right_side();
+    void right_side_dfs();
 };
 
 void bst_demo(void);

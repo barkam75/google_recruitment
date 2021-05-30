@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string>
 #include <queue>
+#include <vector>
 #include "bst.h"
 
 using namespace std;
@@ -17,7 +18,7 @@ BSTNode *BSTNode::insert_r(int val)
 {
     //Recursion used
     BSTNode *item = NULL;
-    if (value > val)
+    if (value < val)
     {
         if (right == NULL)
         {
@@ -51,7 +52,7 @@ BSTNode *BSTNode ::insert_i(int val)
     BSTNode *node = this;
     while (node != NULL)
     {
-        if (node->value > val)
+        if (node->value < val)
         {
             //Go right
             if (node->right == NULL)
@@ -144,10 +145,10 @@ int BSTNode::treedepth()
         item = src_queue.front();
         src_queue.pop();
         cout << "Item: " << item.first->value << " is et level: " << item.second << endl;
-        if (item.first->right != NULL)
-            src_queue.push({item.first->right, item.second + 1});
         if (item.first->left != NULL)
             src_queue.push({item.first->left, item.second + 1});
+        if (item.first->right != NULL)
+            src_queue.push({item.first->right, item.second + 1});
     }
     return item.second;
 }
@@ -186,10 +187,10 @@ void BSTNode::level_order()
         {
             s += "," + to_string(item.first->value) + ",";
         }
-        if (item.first->right != NULL)
-            src_queue.push({item.first->right, item.second + 1});
         if (item.first->left != NULL)
             src_queue.push({item.first->left, item.second + 1});
+        if (item.first->right != NULL)
+            src_queue.push({item.first->right, item.second + 1});
     }
     s += "]";
     cout << s << endl;
@@ -212,14 +213,14 @@ void BSTNode::level_order2()
             item = src_queue.front();
             src_queue.pop();
             mid_arr.push_back(item->value);
-            if (item->right != NULL)
-            {
-                src_queue.push(item->right);
-                count++;
-            };
             if (item->left != NULL)
             {
                 src_queue.push(item->left);
+                count++;
+            };
+            if (item->right != NULL)
+            {
+                src_queue.push(item->right);
                 count++;
             };
         }
@@ -238,18 +239,92 @@ void BSTNode::level_order2()
     cout << s << endl;
 }
 
+void BSTNode::right_side()
+{
+    queue<BSTNode *> src_queue;
+    BSTNode *item;
+    vector<int> mid_arr;
+    string s = "[";
+    string s2 = "";
+    int count = 0;
+    int level_size = 1;
+    cout << "Right side of the tree" << endl;
+    src_queue.push(this);
+    while (!src_queue.empty())
+    {
+        for (int i = 0; i < level_size; i++)
+        {
+            item = src_queue.front();
+            src_queue.pop();
+            if (i == (level_size - 1))
+                mid_arr.push_back(item->value);
+            if (item->left != NULL)
+            {
+                src_queue.push(item->left);
+                count++;
+            }
+            if (item->right != NULL)
+            {
+                src_queue.push(item->right);
+                count++;
+            }
+        }
+        level_size = count;
+        count = 0;
+    }
+    for (auto &num : mid_arr)
+    {
+        cout << to_string(num) + ",";
+    }
+    cout << endl;
+}
+
+void BSTNode::rs_dfs(BSTNode *node, int level, vector<int> &table)
+{
+    if (node != NULL)
+    {
+        if (level > table.size())
+        {
+            table.push_back(node->value);
+        }
+        if (node->right != NULL)
+        {
+            rs_dfs(node->right, level + 1, table);
+        }
+        if (node->left != NULL)
+        {
+            rs_dfs(node->left, level + 1, table);
+        }
+    }
+    return;
+}
+
+void BSTNode::right_side_dfs()
+{
+    vector<int> rside;
+    rs_dfs(this, 1, rside);
+    cout << "Right side of the tree DFS" << endl;
+    for (auto num : rside)
+    {
+        cout << num << ",";
+    }
+    cout << endl;
+}
+
 void bst_demo(void)
 {
     BSTNode *root = new BSTNode(5);
     BSTNode *item = NULL;
     cout << "BST demo: Recursive insert" << endl;
-    root->insert_i(3);
-    root->insert_i(2);
-    root->insert_i(4);
-    root->insert_i(6);
-    root->insert_i(7);
-    root->insert_i(10);
-    root->insert_i(11);
+    root->insert_r(3);
+    root->insert_r(2);
+    root->insert_r(4);
+    root->insert_r(6);
+    root->insert_r(7);
+    root->insert_r(1);
+    root->insert_r(0);
+    //root->insert_r(10);
+    //root->insert_r(11);
     cout << "5 nodes inserted" << endl;
     cout << "DFS Search" << endl;
     item = root->search_DFS(6);
@@ -260,4 +335,6 @@ void bst_demo(void)
     cout << "Tree depth(DFS):" << root->treedepthdfs() << endl;
     cout << "Level order demo" << endl;
     root->level_order2();
+    root->right_side();
+    root->right_side_dfs();
 }
