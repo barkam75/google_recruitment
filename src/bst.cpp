@@ -311,6 +311,22 @@ void BSTNode::right_side_dfs()
     cout << endl;
 }
 
+void tree_size_demo()
+{
+    BSTNode *root = new BSTNode(12);
+    root->insert_r(17);
+    root->insert_r(14);
+    root->insert_r(13);
+    root->insert_r(18);
+    root->insert_r(8);
+    root->insert_r(10);
+    root->insert_r(9);
+    root->insert_r(11);
+    root->insert_r(5);
+    root->insert_r(6);
+    root->insert_r(3);
+}
+
 void bst_demo(void)
 {
     BSTNode *root = new BSTNode(5);
