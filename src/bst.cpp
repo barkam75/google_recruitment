@@ -311,20 +311,81 @@ void BSTNode::right_side_dfs()
     cout << endl;
 }
 
+bool BSTNode::bst_traverse(int level, int num)
+{
+    BSTNode *item = this;
+    int mask = (1 << level - 1);
+    while (level != 0)
+    {
+        if ((mask & num) != 0)
+        {
+            item = item->right;
+        }
+        else
+        {
+            item = item->left;
+        }
+        if (item == NULL)
+            return false;
+        mask = mask >> 1;
+        level--;
+    }
+    return true;
+}
+
+int BSTNode::complete_number()
+{
+    BSTNode *item = this;
+    int level = 0;
+    int r = 0;
+    int l = 0;
+    int mid;
+    while (item->left != NULL)
+    {
+        item = item->left;
+        level++;
+    }
+    cout << "Tree level: " << level << endl;
+    r = (1 << level) - 1;
+    while (l != r)
+    {
+
+        //mid = (l + r) / 2;
+        mid = 1 + (((l + r) - 1) / 2);
+        cout << "MID:" << mid << endl;
+        if (bst_traverse(level, mid))
+        {
+            l = mid;
+        }
+        else
+        {
+            r = mid - 1;
+        }
+    }
+    cout << "LValue:" << l << endl;
+    return ((2 << (level - 1)) - 1) + l + 1;
+}
+
 void tree_size_demo()
 {
     BSTNode *root = new BSTNode(12);
-    root->insert_r(17);
-    root->insert_r(14);
-    root->insert_r(13);
-    root->insert_r(18);
+    cout << "Complete tree size demo" << endl;
     root->insert_r(8);
+    root->insert_r(10);
+    root->insert_r(5);
+    root->insert_r(3);
+    root->insert_r(6);
     root->insert_r(10);
     root->insert_r(9);
     root->insert_r(11);
-    root->insert_r(5);
-    root->insert_r(6);
-    root->insert_r(3);
+    root->insert_r(17);
+    root->insert_r(19);
+    root->insert_r(15);
+    root->insert_r(14);
+    root->insert_r(16);
+    root->insert_r(18);
+    root->insert_r(20);
+    cout << "Number elements in the complete tree: xxx-" << root->complete_number() << endl;
 }
 
 void bst_demo(void)
@@ -353,4 +414,6 @@ void bst_demo(void)
     root->level_order2();
     root->right_side();
     root->right_side_dfs();
+
+    tree_size_demo();
 }

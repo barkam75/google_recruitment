@@ -25,6 +25,8 @@ public:
     void level_order2();
     void right_side();
     void right_side_dfs();
+    int complete_number();
+    bool bst_traverse(int level, int leafnum);
 };
 
 void bst_demo(void);
