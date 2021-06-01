@@ -92,20 +92,43 @@ BSTNode *BSTNode::search_DFS(int val)
     }
     else
     {
-        if (right != NULL)
-        {
-            item = right->search_DFS(val);
-            if (item != NULL)
-                return item;
-        }
         if (left != NULL)
         {
             item = left->search_DFS(val);
             if (item != NULL)
                 return item;
         }
+        if (right != NULL)
+        {
+            item = right->search_DFS(val);
+            if (item != NULL)
+                return item;
+        }
     }
     return NULL;
+}
+
+bool BSTNode::validate_bst(int minval, int maxval)
+{
+    bool lresult = true;
+    bool rresult = true;
+    cout << minval << " < (" << value << ") < " << maxval << endl;
+    if ((value > minval) && (value < maxval))
+    {
+        if (left != NULL)
+        {
+            lresult = left->validate_bst(minval, value);
+        }
+        if (right != NULL)
+        {
+            rresult = right->validate_bst(value, maxval);
+        }
+        return (lresult && rresult);
+    }
+    else
+    {
+        return false;
+    }
 }
 
 BSTNode *BSTNode::search_BFS(int val)
@@ -369,10 +392,12 @@ int BSTNode::complete_number()
 void tree_size_demo()
 {
     BSTNode *root = new BSTNode(12);
+    BSTNode *test;
     cout << "Complete tree size demo" << endl;
     root->insert_r(8);
-    root->insert_r(10);
+    //  test = root->insert_r(10);
     root->insert_r(5);
+    //test->set_left(new BSTNode(3));
     root->insert_r(3);
     root->insert_r(6);
     root->insert_r(10);
@@ -386,6 +411,14 @@ void tree_size_demo()
     root->insert_r(18);
     root->insert_r(20);
     cout << "Number elements in the complete tree: xxx-" << root->complete_number() << endl;
+    if (root->validate_bst(std::numeric_limits<int>::min(), std::numeric_limits<int>::max()))
+    {
+        cout << "Valid BST tree" << endl;
+    }
+    else
+    {
+        cout << "Invalid BST tree" << endl;
+    }
 }
 
 void bst_demo(void)

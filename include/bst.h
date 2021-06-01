@@ -26,7 +26,11 @@ public:
     void right_side();
     void right_side_dfs();
     int complete_number();
+    int get_value() { return value; };
+    void set_left(BSTNode *node) { left = node; };
+    void set_right(BSTNode *node) { right = node; };
     bool bst_traverse(int level, int leafnum);
+    bool validate_bst(int minval, int maxval);
 };
 
 void bst_demo(void);
