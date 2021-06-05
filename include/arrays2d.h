@@ -26,7 +26,7 @@ private:
         while (!search_queue.empty())
             search_queue.pop();
     };
-    void isolate_island(int x, int y);
+    int isolate_island(int x, int y);
 
 public:
     Array2D(vector<vector<int>> &ptr);

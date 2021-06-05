@@ -116,25 +116,38 @@ bool Array2D::search_bfs(int value, int &x, int &y)
     return false;
 }
 
-void Array2D::isolate_island(int x, int y)
+int Array2D::isolate_island(int x, int y)
 {
+    int rings = 0;
+    int n;
+    int item_count = 1;
+    int count = 0;
     pair<int, int> item = {x, y};
     cout << "Isolating island ..." << endl;
     while (!search_queue.empty())
     {
-        item = search_queue.front();
-        search_queue.pop();
-        x = item.first;
-        y = item.second;
-        cout << "Data(" << x << "," << y << "):" << data_ptr[y][x] << endl;
-        if (data_ptr[y][x] == 1)
+        cout << "Ring...." << endl;
+        for (n = 0; n < item_count; n++)
         {
-            bfs_enqueue(x, y - 1); //Go up
-            bfs_enqueue(x + 1, y); //Go right
-            bfs_enqueue(x, y + 1); //Go down
-            bfs_enqueue(x - 1, y); //Go left
+            item = search_queue.front();
+            search_queue.pop();
+            x = item.first;
+            y = item.second;
+            cout << "Data(" << x << "," << y << "):" << data_ptr[y][x] << endl;
+            if (data_ptr[y][x] == 1)
+            {
+                count += bfs_enqueue(x, y - 1); //Go up
+                count += bfs_enqueue(x + 1, y); //Go right
+                count += bfs_enqueue(x, y + 1); //Go down
+                count += bfs_enqueue(x - 1, y); //Go left
+            }
         }
+        item_count = count;
+        count = 0;
+        rings++;
     }
+    cout << "Searched rings: " << rings << endl;
+    return rings;
 }
 
 int Array2D::island_search()
@@ -174,11 +187,14 @@ int Array2D::rotten_oranges()
                 if (data_ptr[y][x] == 2)
                 {
                     //Roting orange found
+                    data_ptr[y][x] = 1;
+                    bfs_enqueue(x, y);
                     time = max(time, isolate_island(x, y));
                 }
             }
         }
     }
+    return time - 1;
 }
 
 void array_dfs_demo()
@@ -200,10 +216,15 @@ void array_dfs_demo()
     {
         cout << "Upps... Nobody there?" << endl;
     }
-    vector<vector<int>> sea = {{0, 1, 0, 1, 0}, {1, 0, 1, 0, 1}, {0, 0, 1, 0, 0}, {1, 0, 1, 0, 0}};
-    //vector<vector<int>> sea = {{1, 1, 1, 1, 0}, {1, 1, 0, 1, 0}, {1, 0, 1, 0, 1}, {0, 0, 0, 1, 1}};
+    //vector<vector<int>> sea = {{0, 1, 0, 1, 0}, {1, 0, 1, 0, 1}, {0, 0, 1, 0, 0}, {1, 0, 1, 0, 0}};
+    vector<vector<int>> sea = {{1, 1, 1, 1, 0}, {1, 1, 0, 1, 0}, {1, 0, 1, 0, 1}, {0, 0, 0, 1, 1}};
+    vector<vector<int>> oranges = {{2, 1, 1, 0, 0}, {1, 1, 1, 0, 0}, {0, 1, 1, 1, 1}, {0, 1, 0, 0, 1}};
     Array2D *islands = new Array2D(sea);
     cout << "Finding islands" << endl;
     x = islands->island_search();
     cout << "Islands found: " << x << endl;
+    Array2D *rot = new Array2D(oranges);
+    cout << "Roting oranges" << endl;
+    x = rot->rotten_oranges();
+    cout << "Time to rot all oranges: " << x << endl;
 }
