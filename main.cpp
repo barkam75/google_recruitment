@@ -16,6 +16,7 @@
 #include "maxkth.h"
 #include "heaps.h"
 #include "arrays2d.h"
+#include "graphs.h"
 
 using namespace std;
 
@@ -194,7 +195,8 @@ void original_substring_demo(void)
 
 int main(void)
 {
-    array_dfs_demo();
+    graphs_demos();
+    //array_dfs_demo();
     //heaps_demo();
     // sort_demo();
     // bst_demo();

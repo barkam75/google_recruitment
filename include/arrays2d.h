@@ -34,6 +34,7 @@ public:
     bool search_bfs(int value, int &x, int &y);
     int rotten_oranges();
     int island_search();
+    void wall_traverse();
 };
 
 void array_dfs_demo();

@@ -197,6 +197,25 @@ int Array2D::rotten_oranges()
     return time - 1;
 }
 
+void Array2D::wall_traverse()
+{
+    int x;
+    int y;
+    for (y = 0; y < data_height; y++)
+    {
+        for (x = 0; x < data_width; x++)
+        {
+            if (!check_encode(x, y, false))
+            {
+                if (data_ptr[y][x] == 2)
+                {
+                    //If gate is found
+                }
+            }
+        }
+    }
+}
+
 void array_dfs_demo()
 {
     int x, y;
